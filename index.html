@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>myWeather</title>
+    <link rel="stylesheet" href="scss/style.css">
+</head>
+<body>
+    <div class="widget">
+        <div class="widget__body">
+            <div class="current-state">
+                <div class="current-state__search">
+                    <label><input id="cityName" type="text" size="20" value="Ярославль"></label>
+                    <input type="button" value="G" size="1" onclick="findCity()">
+                </div>
+                <div class="current-state__select-period">
+                    <div onclick="changePeriod('left')" class="current-state__period current-state__period__left selected">Сейчас</div>
+                    <div onclick="changePeriod('right')" class="current-state__period current-state__period__right">3 дня</div>
+                </div>
+                <div class="current-state__clock">
+                    <span class="date-time" id="current-date">UPDATE</span>
+                    <span class="date-time" id="current-time">UPDATE</span>
+                </div>
+            </div>
+            <div class="show-weather">
+                <div class="today">
+                    <div class="today__top">
+                        <div class="today__temp">
+                            <span id="temp"></span>°C
+                            <div class="today__feels_like">Ощущается как <span id="feels_like"></span>°C</div>
+                        </div>
+                        <div class="today__icon">
+                            <img id="icon" src="images/02d.png" alt="">
+                        </div>
+                    </div>
+                    <div class="today__bottom">
+                        <div class="today__row">
+                            <div class="item-widget">
+                                <div class="item-widget__title">Ветер</div>
+                                <div class="item-widget__text"><span id="speed"></span> м/с</div>
+                                <div class="item-widget__icon"><img src="images/wind.png" alt=""></div>
+                            </div>
+                            <div class="item-widget">
+                                <div class="item-widget__title">Давление</div>
+                                <div class="item-widget__text"><span id="pressure"></span> ммртст</div>
+                                <div class="item-widget__icon"><img src="images/pressure.png" alt=""></div>
+                            </div>
+                            <div class="item-widget">
+                                <div class="item-widget__title">Влажность</div>
+                                <div class="item-widget__text"><span id="humidity"></span> %</div>
+                                <div class="item-widget__icon"><img src="images/humidity.png" alt=""></div>
+                            </div>
+                        </div>
+                        <div class="today__description">
+                            <span id="description">ясна</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="show-weather none" >
+                <div class="three-days">
+                        <div class="three-days__slides">
+                            <input type="radio" name="r" id="r1" checked>
+                            <input type="radio" name="r" id="r2" >
+                            <input type="radio" name="r" id="r3" >
+                            <div class="slide">
+                            </div>
+                            <div class="slide s1">
+                                <div class="slide__day">
+                                    <span class="next-day">5</span>
+                                    <span class="next-day">ЧТ</span>
+                                </div>
+                                <div class="column">
+                                    <div class="column__time information">
+                                        <div class="information__about">Время суток</div>
+                                        <div class="information__night">ночь</div>
+                                        <div class="information__morning">утро</div>
+                                        <div class="information__day">день</div>
+                                        <div class="information__evening">вечер</div>
+                                    </div>
+                                    <div class="column__temp information">
+                                        <div class="information__about">°C</div>
+                                        <div class="information__night">8</div>
+                                        <div class="information__morning">12</div>
+                                        <div class="information__day">18</div>
+                                        <div class="information__evening">15</div>
+                                    </div>
+                                    <div class="column__feels_like information">
+                                        <div class="information__about">Ощущается как</div>
+                                        <div class="information__night">5</div>
+                                        <div class="information__morning">10</div>
+                                        <div class="information__day">18</div>
+                                        <div class="information__evening">10</div>
+                                    </div>
+                                    <div class="column__icon information">
+                                        <div class="information__about"><img src="images/compass.png" alt=""></div>
+                                        <div class="information__night"><img src="images/02d.png" alt=""></div>
+                                        <div class="information__morning"><img src="images/02d.png" alt=""></div>
+                                        <div class="information__day"><img src="images/02d.png" alt=""></div>
+                                        <div class="information__evening"><img src="images/02d.png" alt=""></div>
+                                    </div>
+                                    <div class="column__status information">
+                                        <div class="information__about">Описание</div>
+                                        <div class="information__night">облачно</div>
+                                        <div class="information__morning">ясно</div>
+                                        <div class="information__day">дождь</div>
+                                        <div class="information__evening">переменная облачность</div>
+                                    </div>
+                                    <div class="column__pressure information">
+                                        <div class="information__about">Давление</div>
+                                        <div class="information__night">721</div>
+                                        <div class="information__morning">873</div>
+                                        <div class="information__day">733</div>
+                                        <div class="information__evening">873</div>
+                                    </div>
+                                    <div class="column__humidity information">
+                                        <div class="information__about">Влажность</div>
+                                        <div class="information__night">80</div>
+                                        <div class="information__morning">78</div>
+                                        <div class="information__day">73</div>
+                                        <div class="information__evening">82</div>
+                                    </div>
+                                    <div class="column__wind information">
+                                        <div class="information__about">Ветер м/с</div>
+                                        <div class="information__night">5</div>
+                                        <div class="information__morning">3</div>
+                                        <div class="information__day">5</div>
+                                        <div class="information__evening">4</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide s2">
+                                <div class="slide__day">
+                                    <span class="next-day">6</span>
+                                    <span class="next-day">ПТ</span>
+                                </div>
+                                <div class="column">
+                                    <div class="column__time information">
+                                        <div class="information__about">Время суток</div>
+                                        <div class="information__night">ночь</div>
+                                        <div class="information__morning">утро</div>
+                                        <div class="information__day">день</div>
+                                        <div class="information__evening">вечер</div>
+                                    </div>
+                                    <div class="column__temp information">
+                                        <div class="information__about">°C</div>
+                                        <div class="information__night">8</div>
+                                        <div class="information__morning">12</div>
+                                        <div class="information__day">18</div>
+                                        <div class="information__evening">15</div>
+                                    </div>
+                                    <div class="column__feels_like information">
+                                        <div class="information__about">Ощущается как</div>
+                                        <div class="information__night">5</div>
+                                        <div class="information__morning">10</div>
+                                        <div class="information__day">18</div>
+                                        <div class="information__evening">10</div>
+                                    </div>
+                                    <div class="column__icon information">
+                                        <div class="information__about"><img src="images/compass.png" alt=""></div>
+                                        <div class="information__night"><img src="images/02d.png" alt=""></div>
+                                        <div class="information__morning"><img src="images/02d.png" alt=""></div>
+                                        <div class="information__day"><img src="images/02d.png" alt=""></div>
+                                        <div class="information__evening"><img src="images/02d.png" alt=""></div>
+                                    </div>
+                                    <div class="column__status information">
+                                        <div class="information__about">Описание</div>
+                                        <div class="information__night">облачно</div>
+                                        <div class="information__morning">ясно</div>
+                                        <div class="information__day">дождь</div>
+                                        <div class="information__evening">переменная облачность</div>
+                                    </div>
+                                    <div class="column__pressure information">
+                                        <div class="information__about">Давление</div>
+                                        <div class="information__night">721</div>
+                                        <div class="information__morning">873</div>
+                                        <div class="information__day">733</div>
+                                        <div class="information__evening">873</div>
+                                    </div>
+                                    <div class="column__humidity information">
+                                        <div class="information__about">Влажность</div>
+                                        <div class="information__night">80</div>
+                                        <div class="information__morning">78</div>
+                                        <div class="information__day">73</div>
+                                        <div class="information__evening">82</div>
+                                    </div>
+                                    <div class="column__wind information">
+                                        <div class="information__about">Ветер</div>
+                                        <div class="information__night">5</div>
+                                        <div class="information__morning">3</div>
+                                        <div class="information__day">5</div>
+                                        <div class="information__evening">4</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide s3">
+                                <div class="slide__day">
+                                    <span class="next-day">7</span>
+                                    <span class="next-day">СБ</span>
+                                </div>
+                                <div class="column">
+                                    <div class="column__time information">
+                                        <div class="information__about">Время суток</div>
+                                        <div class="information__night">ночь</div>
+                                        <div class="information__morning">утро</div>
+                                        <div class="information__day">день</div>
+                                        <div class="information__evening">вечер</div>
+                                    </div>
+                                    <div class="column__temp information">
+                                        <div class="information__about">°C</div>
+                                        <div class="information__night">8</div>
+                                        <div class="information__morning">12</div>
+                                        <div class="information__day">18</div>
+                                        <div class="information__evening">15</div>
+                                    </div>
+                                    <div class="column__feels_like information">
+                                        <div class="information__about">Ощущается как</div>
+                                        <div class="information__night">5</div>
+                                        <div class="information__morning">10</div>
+                                        <div class="information__day">18</div>
+                                        <div class="information__evening">10</div>
+                                    </div>
+                                    <div class="column__icon information">
+                                        <div class="information__about"><img src="images/compass.png" alt=""></div>
+                                        <div class="information__night"><img src="images/02d.png" alt=""></div>
+                                        <div class="information__morning"><img src="images/02d.png" alt=""></div>
+                                        <div class="information__day"><img src="images/02d.png" alt=""></div>
+                                        <div class="information__evening"><img src="images/02d.png" alt=""></div>
+                                    </div>
+                                    <div class="column__status information">
+                                        <div class="information__about">Описание</div>
+                                        <div class="information__night">облачно</div>
+                                        <div class="information__morning">ясно</div>
+                                        <div class="information__day">дождь</div>
+                                        <div class="information__evening">переменная облачность</div>
+                                    </div>
+                                    <div class="column__pressure information">
+                                        <div class="information__about">Давление</div>
+                                        <div class="information__night">721</div>
+                                        <div class="information__morning">873</div>
+                                        <div class="information__day">733</div>
+                                        <div class="information__evening">873</div>
+                                    </div>
+                                    <div class="column__humidity information">
+                                        <div class="information__about">Влажность</div>
+                                        <div class="information__night">80</div>
+                                        <div class="information__morning">78</div>
+                                        <div class="information__day">73</div>
+                                        <div class="information__evening">82</div>
+                                    </div>
+                                    <div class="column__wind information">
+                                        <div class="information__about">Ветер</div>
+                                        <div class="information__night">5</div>
+                                        <div class="information__morning">3</div>
+                                        <div class="information__day">5</div>
+                                        <div class="information__evening">4</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="three-days__navigation">
+                            <!--мб нужно добавить  <div class="__column">-->
+                            <label for="r1" class="item-day">
+                                <span>ПТ 14 Июня</span>
+                            </label>
+                            <label for="r2" class="item-day">
+                                <span>ПТ 15 Июня</span>
+                            </label>
+                            <label for="r3" class="item-day">
+                                <span>ПТ 16 Июня</span>
+                            </label>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+<script src="js/script.js"></script>
+</body>
+</html>
