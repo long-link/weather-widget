@@ -143,7 +143,9 @@ function dataOutput3days(dataList) {
                 let currentData = currentSlide.getElementsByClassName(`column__${elem}`)[0];
                 currentData = currentData.children[timeDay];
                 if (elem === 'icon'){
-                    currentData.setAttribute('src', `images/${dataList[elem]}.png`)
+                    currentData
+                        .children[0]
+                        .setAttribute('src', `images/${dataList[j][elem]}.png`);
                 }
                 else{
                     currentData.innerText = dataList[j][elem];
